@@ -20,3 +20,41 @@ To complete the assignment, you must complete the following:
     1. If the request is unsuccessful, display a specific error message such as "Invalid Zip Code" or anything else that might come back from the API.
 1. Allow the user to continue entering new zip codes to get new weather data.
 1. Design should include a RESPONSIVE layout utilizing Bootstrap’s layout classes that works on both mobile and desktop (with different layouts) and applies atomic design principles for a professional looking presentation.
+
+## Variables
+- State object for entire page (see below)
+- ZIP code
+- API Key
+- API Call String (built dynamically)
+- state (int)
+    - Initial, 0 (ZIP code box)
+    - Display, 1, generate HTML
+
+## stateObj
+- City (weather api = name)
+- ZIP Code
+- Temperature in Kelvin (weather api = main.temp)
+- Temperature in Fahrenheit (have to compute)
+- Temperature in Celsius (have to compute)
+- Condition (weather api = weather.main and weather.description)
+- Image (weather api = http://openweathermap.org/img/wn/10d@2x.png (EX))
+    - File name is weather.icon from API call
+    - Scaling possible within file name
+
+## Functions
+
+### initialize()
+1. 
+
+### validateZIP()
+1. 
+
+### buttonClick()
+1. 
+
+### getData()
+1. 
+
+### tempConversion()
+1.
+
