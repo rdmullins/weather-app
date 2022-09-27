@@ -7,7 +7,7 @@ For this project, we will be using an external API to retrieve weather data to c
 
 ## Requirements
 To complete the assignment, you must complete the following:
-1. Use JS to render the entire app (only have a single <div id='main'></div> in the body of your index.html).
+1. Use JS to render the entire app (only have a single `<div id='main'></div>` in the body of your index.html).
 1. Use https://openweathermap.org/’s API to fetch weather data.
 1. Allow the user to enter their location (zip code is probably easiest) and press a button to load the weather.
 1. Run an onClick or onSubmit that executes an Axios GET request to retrieve weather data from the API.
