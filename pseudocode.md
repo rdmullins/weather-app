@@ -44,17 +44,96 @@ To complete the assignment, you must complete the following:
 ## Functions
 
 ### initialize()
-1. 
+1. BEGIN
+1. SELECT target DIV
+1. CREATE container DIV
+
 
 ### validateZIP()
-1. 
+1. BEGIN
+1. TEST does ZIP.length = 5?
+    1. BEGIN
+    1. IF ZIP.length != 5 return error
+    1. ELSE proceed
+    1. END
+1. TEST are all characters in ZIP digits?
+    1. BEGIN
+    1. STEP through five-character string
+    1. USE Number() function on each character
+    1. USE isNaN() function on each converted character
+    1. IF isNaN() returns true, return error
+    1. ELSE proceed
+    1. IF isNaN() returns false, the value IS a number
+    1. END
+1. END
 
 ### buttonClick()
-1. 
+1. // I think this can be replaced by initialize()
 
 ### getData()
-1. 
+1. BEGIN
+1. BUILD API call
+    1. BEGIN
+    1. CREATE string
+    1. SET string = base URL
+    1. SET string = string + ZIP code
+    1. SET string = string + API key
+    1. END
+1. USE Axios to call API with string
+1. RETURN data
+1. END
 
 ### tempConversion()
-1.
+1. BEGIN
+1. Kelvin passed in
+1. F = 1.8*(K-273) + 32
+1. Celsius = (Kelvin – 273.15)
+1. END
+
+### updateDisplay()
+1. BEGIN
+1. GET target DIVs
+1. SET target DIV innerText to value from object
+1. END
+
+## UX Walkthrough
+1. Page Load
+    1. BEGIN
+    1. BUILD out initialize page elements
+        1. TITLE
+        1. ZIP CODE input box
+        1. BUTTON
+    1. BUTTON CLICK
+        1. BEGIN
+        1. VERIFY ZIP CODE
+            1. IS Length = 5?
+            1. are all characters numbers?
+        1. END
+    1. END // Page load - Only progress if ZIP code validates, otherwise ERROR
+1. BUILD API call
+    1. BEGIN
+    1. base URL
+    1. APPEND ZIP code
+    1. APPEND API key (from variable)
+    1. END
+1. EXECUTE API call
+    1. BEGIN
+    1. Axios API call using built string
+    1. RETURN data object JSON
+    1. END
+1. EXTRACT information from JSON
+    1. BEGIN
+    1. City
+    1. Temperature in Kelvin (weather api = main.temp)
+    1. Condition (weather api = weather.main and weather.description)
+    1. Image (weather api = http://openweathermap.org/img/wn/10d@2x.png (EX))
+        - File name is weather.icon from API call
+        - Scaling possible within file name
+    1. END
+1. CALL tempConversion() function
+1. ASSIGN extracted info to Object
+    1. Include ZIP code
+    1. Include converted temperature
+1. CALL updateDisplay() function
+1. END
 
