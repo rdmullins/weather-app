@@ -147,7 +147,48 @@ function updateDisplay() {
 // };
 // };
 
+function zipValidates(zipToCheck) {
+  // This function returns a Boolean value depending on two tests:
+  //    1. The ZIP code length has to be 5
+  //    1. The ZIP code has to consist of digits
+  returnValueLength = false;
+  returnValueDigits = false;
+  console.log("Inside the zipValidates function.");
+  console.log("zipToCheck is: ", zipToCheck);
+  console.log("zipToCheck type is ", typeof(zipToCheck));
+  console.log("zipToCheck.length: ", zipToCheck.length);
+
+  if (zipToCheck.length === 5) {
+    returnValueLength = true;
+    console.log("returnValueLength: ", returnValueLength);
+  };
+  
+  for (let i=0; i<=zipToCheck.length; i++) {
+    let test = (Number(zipToCheck[i]))
+    console.log("Testing ", zipToCheck[i]);
+    if (isNaN(test)) {
+      returnValueDigits = false
+    } else {
+      returnValueDigits = true
+    }
+
+  };
+  console.log("returnValueLength: ", returnValueLength);
+  console.log("returnValueDigits: ", returnValueDigits);
+
+  return (returnValueLength && returnValueDigits);
+};
+
 buildUI();
 prompt("ZIP Code:", zipIn);
-validateZip(zipIn);
+
+// I don't think that's returning anything...
+
+if (zipValidates(zipIn)) {
+  callAPI(zipIn);
+} else {
+  alert("Invalid ZIP code.");
+}
+
+// validateZip(zipIn);
 //callAPI("41572");
