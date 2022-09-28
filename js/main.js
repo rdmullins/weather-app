@@ -13,6 +13,8 @@ let stateObj = {
   imageURL: ""
 };
 
+// Global Variable
+
 let zipIn = "";
 
 function buildUI() {
@@ -98,6 +100,11 @@ async function callAPI(zipIn) {
   const apiCall = ("https://api.openweathermap.org/data/2.5/weather?zip=" + zipIn + ",us&appid=" + apiKey);
   const dataBack = await axios.get(apiCall);
   console.log(dataBack);
+  // if (dataBack.request.statusText == "Not Found") {
+  //   console.log("Invalid ZIP code - city not found.");
+  // }
+
+  // ^ This is not working. Need to figure out how to error catch with Axios
 
   // Update stateObj with returned data
   stateObj.city = dataBack.data.name;
@@ -131,58 +138,32 @@ function updateDisplay() {
 
 };
 
-// function validateZip(zipIn) {
-//   console.log(zipIn.length);
-//   if (zipIn.length !== 5) {
-//     //alert("Invalid ZIP code. Reported length = " + zipIn.length);
-//   } else {
-//     for (let i=0; i<=zipIn.length; i++) {
-//       let test = Number(zipIn[i]);
-//       console.log(test);
-//       if (isNaN(test)) {
-//         console.log(test, " is not a number.");
-//         //alert("Invalid ZIP code.");
-//       };
-//     }
-// };
-// };
-
 function zipValidates(zipToCheck) {
   // This function returns a Boolean value depending on two tests:
   //    1. The ZIP code length has to be 5
   //    1. The ZIP code has to consist of digits
   returnValueLength = false;
   returnValueDigits = false;
-  console.log("Inside the zipValidates function.");
-  console.log("zipToCheck is: ", zipToCheck);
-  console.log("zipToCheck type is ", typeof(zipToCheck));
-  console.log("zipToCheck.length: ", zipToCheck.length);
 
   if (zipToCheck.length === 5) {
     returnValueLength = true;
-    console.log("returnValueLength: ", returnValueLength);
   };
   
-  for (let i=0; i<=zipToCheck.length; i++) {
+  for (let i=0; i<zipToCheck.length; i++) {
     let test = (Number(zipToCheck[i]))
-    console.log("Testing ", zipToCheck[i]);
     if (isNaN(test)) {
-      returnValueDigits = false
+      returnValueDigits = false;
+      break
     } else {
       returnValueDigits = true
     }
 
   };
-  console.log("returnValueLength: ", returnValueLength);
-  console.log("returnValueDigits: ", returnValueDigits);
-
   return (returnValueLength && returnValueDigits);
 };
 
 buildUI();
-prompt("ZIP Code:", zipIn);
-
-// I don't think that's returning anything...
+zipIn = prompt("ZIP Code:");
 
 if (zipValidates(zipIn)) {
   callAPI(zipIn);
