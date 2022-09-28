@@ -101,7 +101,7 @@ To complete the assignment, you must complete the following:
 1. RETURN data
 1. END
 
-### tempConversion()
+### tempConversion() // This got tossed - easy to do conversion inline
 1. BEGIN
 1. Kelvin passed in
 1. F = 1.8*(K-273) + 32

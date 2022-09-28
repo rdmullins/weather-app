@@ -13,6 +13,8 @@ let stateObj = {
   imageURL: ""
 };
 
+let zipIn = "";
+
 function buildUI() {
   // Creates HTML elements
 
@@ -90,23 +92,20 @@ function buildUI() {
   createElement("footer-info", "h6", [], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
 }
 
-async function callAPI() {
-  // Gets data from API and updates stateObj
-  const dataBack = await axios.get("https://api.openweathermap.org/data/2.5/weather?zip=40504,us&appid=a6063ef55e23ba5afdf671e31f5cdf4b");
-  console.log("Inside the async function, dataBack = ", dataBack);
-  console.log("City is: ", dataBack.data.name);
+async function callAPI(zipIn) {
+  // Builds API call string and gets data from API
+  const apiKey = "a6063ef55e23ba5afdf671e31f5cdf4b";
+  const apiCall = ("https://api.openweathermap.org/data/2.5/weather?zip=" + zipIn + ",us&appid=" + apiKey);
+  const dataBack = await axios.get(apiCall);
+  console.log(dataBack);
+
+  // Update stateObj with returned data
   stateObj.city = dataBack.data.name;
-  console.log("ZIP code is: ", "40504 <- this is hard coded for now");
-  stateObj.zipCode = "40504";
-  console.log("Temperature (K) is: ", dataBack.data.main.temp, "K");
-  stateObj.tempK = dataBack.data.main.temp;
-  console.log("Temperature (F) is: ", Math.floor((1.8*((dataBack.data.main.temp)-273))+32), "°F");   // 1.8*(K-273) + 32
-  stateObj.tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32)+"°F");
-  console.log("Temperature (C) is: ", Math.floor((dataBack.data.main.temp - 273.15)), "°C");       // Kelvin – 273.15
-  stateObj.tempC = (Math.floor((dataBack.data.main.temp - 273.15))+"°C");
-  console.log("Current conditions: ", dataBack.data.weather[0].main, " with ", dataBack.data.weather[0].description);
+  stateObj.zipCode = zipIn;
+  stateObj.tempK = (dataBack.data.main.temp+"K"); 
+  stateObj.tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32)+"°F");   // 1.8*(K-273) + 32 
+  stateObj.tempC = (Math.floor((dataBack.data.main.temp - 273.15))+"°C");         // Kelvin – 273.15
   stateObj.condition = (dataBack.data.weather[0].main, " with ", dataBack.data.weather[0].description);
-  console.log("Path to Image: ", ("http://openweathermap.org/img/wn/"+dataBack.data.weather[0].icon+".png"));
   stateObj.imageURL = ("http://openweathermap.org/img/wn/"+dataBack.data.weather[0].icon+".png");
   updateDisplay();
 };
@@ -118,8 +117,7 @@ function updateDisplay() {
     if (id !== "weather-img") {
       e.innerText = value;
     } else {
-      imageURLstring = ("src="+value);
-      e.setAttribute("src", imageURLstring);
+      e.setAttribute("src", value);
     };
   };
 
@@ -133,5 +131,23 @@ function updateDisplay() {
 
 };
 
+// function validateZip(zipIn) {
+//   console.log(zipIn.length);
+//   if (zipIn.length !== 5) {
+//     //alert("Invalid ZIP code. Reported length = " + zipIn.length);
+//   } else {
+//     for (let i=0; i<=zipIn.length; i++) {
+//       let test = Number(zipIn[i]);
+//       console.log(test);
+//       if (isNaN(test)) {
+//         console.log(test, " is not a number.");
+//         //alert("Invalid ZIP code.");
+//       };
+//     }
+// };
+// };
+
 buildUI();
-callAPI();
+prompt("ZIP Code:", zipIn);
+validateZip(zipIn);
+//callAPI("41572");
