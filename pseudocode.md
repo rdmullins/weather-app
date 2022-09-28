@@ -47,6 +47,24 @@ To complete the assignment, you must complete the following:
 1. BEGIN
 1. SELECT target DIV
 1. CREATE container DIV
+1. CREATE navbar DIV
+    1. BEGIN
+    1. ADD logo text
+    1. ADD About
+    1. ADD Contact
+    1. ADD hamburger menu functionality
+    1. END
+1. MODAL for ZIP???
+1. CREATE ZIP code input box
+1. CREATE Submit button
+1. CREATE DIVs for data display
+    1. BEGIN
+    1. City
+    1. Temperature
+    1. Condition
+    1. Other info/image
+    1. END
+1. END
 
 
 ### validateZIP()
