@@ -155,3 +155,6 @@ To complete the assignment, you must complete the following:
 1. CALL updateDisplay() function
 1. END
 
+## Stretch Goals to Add
+- Wind speed and direction
+
