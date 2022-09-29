@@ -78,26 +78,29 @@ function buildUI() {
   // Note IDs in side comments -> correspond to stateObj fields
 
   createElement("appContainer", "div", ["container", "text-center"], "returned-data-section");
-  createElement("returned-data-section", "div", ["row", "align-items-center"], "city-label-row");
+  createElement("returned-data-section", "div", ["row", "bg-warning", "align-items-center"], "city-label-row");
   createElement("city-label-row", "div", ["col", "display-5"], "city-label-display", "City");
   createElement("returned-data-section", "div", ["row", "align-items-center"], "city-display-row");
   createElement("city-display-row", "div", ["col", "align-items-center", "display-3"], "city-display", "CITY GOES HERE");              // city-display
   createElement("returned-data-section", "div", ["row"], "zip-code-display-row");
-  createElement("zip-code-display-row", "div", ["col", "display-4"], "zip-code-display", "ZIP GOES HERE");       // zip-code-display
-  createElement("appContainer", "div", ["row", "text-center"], "temperature-label-row");
-  createElement("appContainer", "div", ["row", "text-center"], "temperature-display-label-row");
-  createElement("temperature-display-label-row", "div", ["col"], "temperature-display-label", "Temperature");
+  createElement("zip-code-display-row", "div", ["col", "display-5"], "zip-code-display", "ZIP GOES HERE");       // zip-code-display
+  createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "temperature-label-row");
+  createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "temperature-display-label-row");
+  createElement("temperature-display-label-row", "div", ["col", "display-5"], "temperature-display-label", "Temperature");
   createElement("appContainer", "div", ["row"], "temperature-display-row");
   createElement("temperature-display-row", "div", ["col-4", "text-center"], "temp-Kelvin", "KELVIN GOES HERE");          // temp-Kelvin
-  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-3"], "temp-Fahrenheit", "FAHRENHEIT GOES HERE");  // temp-Fahrenheit
+  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-3", "bg-info"], "temp-Fahrenheit", "FAHRENHEIT GOES HERE");  // temp-Fahrenheit
   createElement("temperature-display-row", "div", ["col-4", "text-center"], "temp-Celsius", "CELSIUS GOES HERE");        // temp-Celsius
-  createElement("appContainer", "div", ["row", "d-sm-flex"], "condition-label-row", "Conditions");
-  createElement("appContainer", "div", ["row", "d-sm-flex"], "condition-display", "CONDITIONS GO HERE");         // condition-display
-  createElement("appContainer", "div", ["row", "d-sm-flex"], "other-info-label-row", "Other Information");
-  createElement("appContainer", "div", ["row", "d-sm-flex"], "other-info-display-row");
+  createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "condition-label-row");
+  createElement("condition-label-row", "div", ["col", "display-5"], "current-conditions-label", "Current Conditions");
+  createElement("appContainer", "div", ["row"], "condition-display-row");
+  createElement("condition-display-row", "div", ["col", "text-center", "display-5"], "condition-display",);         // condition-display
+  createElement("appContainer", "div", ["row"], "other-info-label-row");
+  createElement("other-info-label-row", "div", ["col", "display-5"], "other-info-label");
+  createElement("appContainer", "div", ["row"], "other-info-display-row");
   createElement("other-info-display-row", "img", [], "weather-img");                                      // weather-img
   createElement("main", "footer", [], "footer-info");
-  createElement("footer-info", "h6", [], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
+  createElement("footer-info", "h6", ["text-center"], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
 
   // createElement("appContainer", "row", ["d-sm-flex"], "city-label-row", "City");
   // createElement("appContainer", "row", ["d-sm-flex"], "city-display", "CITY GOES HERE");                  // city-display
