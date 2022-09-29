@@ -98,10 +98,10 @@ To complete the assignment, you must complete the following:
     1. SET string = string + API key
     1. END
 1. USE Axios to call API with string
-1. RETURN data
+1. UPDATE stateObj with returned data
 1. END
 
-### tempConversion() // This got tossed - easy to do conversion inline
+### tempConversion() // This got cut - easy to do conversion inline
 1. BEGIN
 1. Kelvin passed in
 1. F = 1.8*(K-273) + 32
@@ -163,6 +163,7 @@ To complete the assignment, you must complete the following:
 - Figure out error handling from API
 - Fix capitalization issue with 'conditions'
     - Capitalize first letter of all words
+- Write readme
 
 ## Stretch Goals to Add
 - Change background colors depending on temp
