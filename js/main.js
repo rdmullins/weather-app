@@ -48,13 +48,21 @@ function buildUI() {
     inputBox.classList.add("form-control");
     inputBox.setAttribute("type", "text");
     inputBox.setAttribute("placeholder", "Enter a 5-digit ZIP code");
+    inputBox.setAttribute("id", "zip-in");
     target.appendChild(inputBox);
 
     let zipButton = document.createElement('button');
-    zipButton.classList.add(["btn", "btn-dark", "btn-lg"]);
+    zipButton.classList.add("btn");
+    zipButton.classList.add("btn-dark");
+    zipButton.classList.add("btn-lg");
     zipButton.setAttribute("type", "button");
+    zipButton.setAttribute("id", "zipButton");
+    zipButton.setAttribute("onclick", "getZip()");
     zipButton.innerText = "Submit";
     target.appendChild(zipButton);
+    // zipButton = document.getElementById("zipButton");
+    // zipButton.addEventListener("click", getZip);
+
   }
 
   // Main Application Container
@@ -115,6 +123,16 @@ function buildUI() {
   createElement("footer-info", "h6", ["text-center"], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
   createElement("footer-info", "h6", ["text-center"], "API-attribution", "Data from www.openweathermap.org");
 };
+
+function getZip() {
+  zipIn = document.getElementById("zip-in").value;
+
+  if (zipValidates(zipIn)) {
+    callAPI(zipIn);
+  } else {
+    alert("Invalid ZIP code.");
+  }
+}
 
 function getTime() {
   // Reused from alarm clock project -RM
@@ -214,13 +232,9 @@ function zipValidates(zipToCheck) {
 
 buildUI();
 setInterval(getTime, 1000);
-zipIn = prompt("ZIP Code:");
+//zipIn = prompt("ZIP Code:");
 
-if (zipValidates(zipIn)) {
-  callAPI(zipIn);
-} else {
-  alert("Invalid ZIP code.");
-}
+
 
 // validateZip(zipIn);
 //callAPI("41572");

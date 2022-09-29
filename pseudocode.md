@@ -156,7 +156,7 @@ To complete the assignment, you must complete the following:
 1. END
 
 ## To Do
-- Fix width issue with ZIP code input box
+- [x] Fix width issue with ZIP code input box
 - Wire up 'Submit' button
 - Once that's working turn off prompt()
 - When ZIP code box is active, render navbar and input sections on page load
@@ -171,7 +171,7 @@ To complete the assignment, you must complete the following:
 - Allow user to select 'favorite' temp
     - It would be awesome if this would slide
 - Wind speed and direction
-X Add current time under zip code
+- [x] Add current time under zip code
 - Add five-day?
 - Store favorite locations?
 - Modal about
