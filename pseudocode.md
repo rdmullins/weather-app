@@ -174,7 +174,7 @@ To complete the assignment, you must complete the following:
 - [x] Add current time under zip code
 - Add five-day?
 - Store favorite locations?
-- Modal about
-- Modal contact
+- [x] Modal about
+- [x] Modal contact
 - ^ Only if I get navbar working
 

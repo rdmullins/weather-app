@@ -61,9 +61,6 @@ function buildUI() {
     zipButton.setAttribute("onclick", "getZip()");
     zipButton.innerText = "Submit";
     target.appendChild(zipButton);
-    // zipButton = document.getElementById("zipButton");
-    // zipButton.addEventListener("click", getZip);
-
   };
 
   function addModalTrigger(elementID, destination) {
@@ -98,12 +95,6 @@ function buildUI() {
   createElement("nav-list", "li", ["nav-item"], "nav-list-item-2");
   createElement("nav-list-item-2", "button", ["btn", "btn-outline-dark"], "contact-link", "Contact");
   addModalTrigger("contact-link", "contactModal");
-//btn btn-outline-dark"
-
-    // <!-- Button trigger modal -->
-  // <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  //   Launch demo modal
-  // </button>
 
   // Zip Code Input Section
   createElement("appContainer", "div", ["container"], "zip-code-container");
@@ -172,33 +163,6 @@ function buildUI() {
   createElement("contactContent", "div", ["modal-footer"], "contactFooter");
   createElement("contactFooter", "button", ["btn", "btn-secondary"], "contactFooterCloseButton", "Dismiss");
   addModalCloseButton("contactFooterCloseButton");
-  
-
-
-  // <!-- Button trigger modal -->
-  // <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  //   Launch demo modal
-  // </button>
-  
-  // <!-- Modal -->
-  // <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  //   <div class="modal-dialog">
-  //     <div class="modal-content">
-  //       <div class="modal-header">
-  //         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-  //         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-  //       </div>
-  //       <div class="modal-body">
-  //         ...
-  //       </div>
-  //       <div class="modal-footer">
-  //         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  //         <button type="button" class="btn btn-primary">Save changes</button>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>
-
 };
 
 function getZip() {
@@ -260,15 +224,6 @@ async function callAPI(zipIn) {
   try {
     const dataBack = await axios.get(apiCall);
 
-    console.log(dataBack);
-
-
-  // if (dataBack.request.statusText == "Not Found") {
-  //   console.log("Invalid ZIP code - city not found.");
-  // }
-
-  // ^ This is not working. Need to figure out how to error catch with Axios
-
   // Update stateObj with returned data
   stateObj.city = dataBack.data.name;
   stateObj.zipCode = zipIn;
@@ -277,7 +232,7 @@ async function callAPI(zipIn) {
   stateObj.tempC = (Math.floor((dataBack.data.main.temp - 273.15))+"°C");         // Kelvin – 273.15
   stateObj.condition = capitalizeConditions((dataBack.data.weather[0].main, " with ", dataBack.data.weather[0].description));
   stateObj.imageURL = ("http://openweathermap.org/img/wn/"+dataBack.data.weather[0].icon+"@2x.png");
-  tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32));
+  tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32)); // Used to change the temperature color background
   updateDisplay();
 
 
