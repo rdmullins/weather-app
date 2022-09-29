@@ -114,6 +114,17 @@ To complete the assignment, you must complete the following:
 1. SET target DIV innerText to value from object
 1. END
 
+### localStorage stretch
+Store the last six locations for easy access
+
+1. BEGIN
+1. CALL local storage function from updateDisplay()
+1. READ local storage to see if location is already stored
+1. IF not
+1. ADD current location zip:city
+1. CREATE button with zip/city info
+1. APPEND button to bottom of container
+
 ## UX Walkthrough
 1. Page Load
     1. BEGIN
