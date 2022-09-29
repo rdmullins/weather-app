@@ -59,7 +59,7 @@ function buildUI() {
 
   createElement("main", "div", ["container"], "appContainer");
   createElement("appContainer", "div", ['nav', 'navbar', 'navbar-expand-sm', 'py-3'], "navbar");
-  createElement("navbar", "h1", ["navbar-brand"], "navbarBrand", "Weather App");
+  createElement("navbar", "h1", ["navbar-brand"], "navbarBrand", "Roger's Weather App");
   createNavToggle();
   createElement("hamburger", "span", ["navbar-toggler-icon"]);
   createElement("navbar", "div", ["collapse", "navbar-collapse"], "navbar-collapse");
@@ -88,17 +88,19 @@ function buildUI() {
   createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "temperature-display-label-row");
   createElement("temperature-display-label-row", "div", ["col", "display-5"], "temperature-display-label", "Temperature");
   createElement("appContainer", "div", ["row"], "temperature-display-row");
-  createElement("temperature-display-row", "div", ["col-4", "text-center"], "temp-Kelvin", "KELVIN GOES HERE");          // temp-Kelvin
+  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-6"], "temp-Kelvin", "KELVIN GOES HERE");          // temp-Kelvin
   createElement("temperature-display-row", "div", ["col-4", "text-center", "display-3", "bg-info"], "temp-Fahrenheit", "FAHRENHEIT GOES HERE");  // temp-Fahrenheit
-  createElement("temperature-display-row", "div", ["col-4", "text-center"], "temp-Celsius", "CELSIUS GOES HERE");        // temp-Celsius
+  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-6"], "temp-Celsius", "CELSIUS GOES HERE");        // temp-Celsius
   createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "condition-label-row");
   createElement("condition-label-row", "div", ["col", "display-5"], "current-conditions-label", "Current Conditions");
   createElement("appContainer", "div", ["row"], "condition-display-row");
   createElement("condition-display-row", "div", ["col", "text-center", "display-5"], "condition-display",);         // condition-display
   createElement("appContainer", "div", ["row"], "other-info-label-row");
   createElement("other-info-label-row", "div", ["col", "display-5"], "other-info-label");
-  createElement("appContainer", "div", ["row"], "other-info-display-row");
-  createElement("other-info-display-row", "img", [], "weather-img");                                      // weather-img
+  createElement("appContainer", "div", ["row"], "weather-img-row");
+  //createElement("other-info-display-row", "div", ["row"], "weather-img-row");
+  createElement("weather-img-row", "div", ["col", "text-center", "bg-info"], "weather-img-col");
+  createElement("weather-img-col", "img", [], "weather-img");                                      // weather-img
   createElement("main", "footer", [], "footer-info");
   createElement("footer-info", "h6", ["text-center"], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
 

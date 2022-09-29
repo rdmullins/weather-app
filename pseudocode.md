@@ -155,6 +155,25 @@ To complete the assignment, you must complete the following:
 1. CALL updateDisplay() function
 1. END
 
+## To Do
+- Fix width issue with ZIP code input box
+- Wire up 'Submit' button
+- Once that's working turn off prompt()
+- When ZIP code box is active, render navbar and input sections on page load
+- Figure out error handling from API
+- Fix capitalization issue with 'conditions'
+    - Capitalize first letter of all words
+
 ## Stretch Goals to Add
+- Change background colors depending on temp
+- Change app colors night/day
+- Allow user to select 'favorite' temp
+    - It would be awesome if this would slide
 - Wind speed and direction
+- Add current time under zip code
+- Add five-day?
+- Store favorite locations?
+- Modal about
+- Modal contact
+- ^ Only if I get navbar working
 
