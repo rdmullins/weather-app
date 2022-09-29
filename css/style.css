@@ -1,0 +1,7 @@
+/* This shortens the input box for the ZIP code */
+
+@media (min-width: 768px) {
+    .zip-input {
+      width: 50%;
+    }
+  }

@@ -114,6 +114,17 @@ To complete the assignment, you must complete the following:
 1. SET target DIV innerText to value from object
 1. END
 
+### localStorage stretch
+Store the last six locations for easy access
+
+1. BEGIN
+1. CALL local storage function from updateDisplay()
+1. READ local storage to see if location is already stored
+1. IF not
+1. ADD current location zip:city
+1. CREATE button with zip/city info
+1. APPEND button to bottom of container
+
 ## UX Walkthrough
 1. Page Load
     1. BEGIN
@@ -156,25 +167,25 @@ To complete the assignment, you must complete the following:
 1. END
 
 ## To Do
-- Fix width issue with ZIP code input box
-- Wire up 'Submit' button
-- Once that's working turn off prompt()
-- When ZIP code box is active, render navbar and input sections on page load
-- Figure out error handling from API
-- Fix capitalization issue with 'conditions'
+- [x] Fix width issue with ZIP code input box
+- [x] Wire up 'Submit' button
+- [x] Once that's working turn off prompt()
+- [x] When ZIP code box is active, render navbar and input sections on page load
+- [x] Figure out error handling from API
+- [x] Fix capitalization issue with 'conditions'
     - Capitalize first letter of all words
 - Write readme
 
 ## Stretch Goals to Add
-- Change background colors depending on temp
+- [x] Change background colors depending on temp
 - Change app colors night/day
 - Allow user to select 'favorite' temp
     - It would be awesome if this would slide
 - Wind speed and direction
-- Add current time under zip code
+- [x] Add current time under zip code
 - Add five-day?
 - Store favorite locations?
-- Modal about
-- Modal contact
+- [x] Modal about
+- [x] Modal contact
 - ^ Only if I get navbar working
 
