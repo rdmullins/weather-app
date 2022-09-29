@@ -58,7 +58,7 @@ function buildUI() {
   }
 
   createElement("main", "div", ["container"], "appContainer");
-  createElement("appContainer", "div", ['nav', 'navbar', 'navbar-expand-lg', 'py-3'], "navbar");
+  createElement("appContainer", "div", ['nav', 'navbar', 'navbar-expand-sm', 'py-3'], "navbar");
   createElement("navbar", "h1", ["navbar-brand"], "navbarBrand", "Weather App");
   createNavToggle();
   createElement("hamburger", "span", ["navbar-toggler-icon"]);
@@ -68,8 +68,8 @@ function buildUI() {
   createElement("nav-list-item-1", "a", [], "about-link", "About");
   createElement("nav-list", "li", ["nav-item"], "nav-list-item-2");
   createElement("nav-list-item-2", "a", [], "contact-link", "Contact");
-  createElement("appContainer", "div", ["container"], "zip-code-container");
-  createElement("zip-code-container", "div", ["d-md-flex", "justify-content-between", "align-items-center"], "zip-code-label-box");
+  createElement("appContainer", "div", ["container-fluid"], "zip-code-container");
+  createElement("zip-code-container", "div", ["d-sm-flex", "justify-content-between", "align-items-center"], "zip-code-label-box");
   createElement("zip-code-label-box", "h3", ["mb-3", "mb-md-0"], "zip-code-label-text", "ZIP Code");
   createElement("zip-code-label-box", "div", ["input-group"], "input-div");
   createInputSection();
@@ -77,21 +77,45 @@ function buildUI() {
   // Everything below this row is targeted by the updateDisplay() function for dynamic populating
   // Note IDs in side comments -> correspond to stateObj fields
 
-  createElement("appContainer", "row", ["d-sm-flex"], "city-label-row", "City");
-  createElement("appContainer", "row", ["d-sm-flex"], "city-display", "CITY GOES HERE");                  // city-display
-  createElement("appContainer", "row", ["d-sm-flex"], "zip-code-display", "ZIP CODE GOES HERE");          // zip-code-display
-  createElement("appContainer", "row", ["d-sm-flex"], "temperature-label-row", "Temperature");
-  createElement("appContainer", "row", ["d-sm-flex"], "temperature-display");
-  createElement("temperature-display", "col", ["d-sm-flex"], "temp-Kelvin", "KELVIN GOES HERE");          // temp-Kelvin
-  createElement("temperature-display", "col", ["d-sm-flex"], "temp-Fahrenheit", "FAHRENHEIT GOES HERE");  // temp-Fahrenheit
-  createElement("temperature-display", "col", ["d-sm-flex"], "temp-Celsius", "CELSIUS GOES HERE");        // temp-Celsius
-  createElement("appContainer", "row", ["d-sm-flex"], "condition-label-row", "Conditions");
-  createElement("appContainer", "row", ["d-sm-flex"], "condition-display", "CONDITIONS GO HERE");         // condition-display
-  createElement("appContainer", "row", ["d-sm-flex"], "other-info-label-row", "Other Information");
-  createElement("appContainer", "row", ["d-sm-flex"], "other-info-display-row");
+  createElement("appContainer", "div", ["container", "text-center"], "returned-data-section");
+  createElement("returned-data-section", "div", ["row", "align-items-center"], "city-label-row");
+  createElement("city-label-row", "div", ["col", "display-5"], "city-label-display", "City");
+  createElement("returned-data-section", "div", ["row", "align-items-center"], "city-display-row");
+  createElement("city-display-row", "div", ["col", "align-items-center", "display-3"], "city-display", "CITY GOES HERE");              // city-display
+  createElement("returned-data-section", "div", ["row"], "zip-code-display-row");
+  createElement("zip-code-display-row", "div", ["col", "display-4"], "zip-code-display", "ZIP GOES HERE");       // zip-code-display
+  createElement("appContainer", "div", ["row", "text-center"], "temperature-label-row");
+  createElement("appContainer", "div", ["row", "text-center"], "temperature-display-label-row");
+  createElement("temperature-display-label-row", "div", ["col"], "temperature-display-label", "Temperature");
+  createElement("appContainer", "div", ["row"], "temperature-display-row");
+  createElement("temperature-display-row", "div", ["col-4", "text-center"], "temp-Kelvin", "KELVIN GOES HERE");          // temp-Kelvin
+  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-3"], "temp-Fahrenheit", "FAHRENHEIT GOES HERE");  // temp-Fahrenheit
+  createElement("temperature-display-row", "div", ["col-4", "text-center"], "temp-Celsius", "CELSIUS GOES HERE");        // temp-Celsius
+  createElement("appContainer", "div", ["row", "d-sm-flex"], "condition-label-row", "Conditions");
+  createElement("appContainer", "div", ["row", "d-sm-flex"], "condition-display", "CONDITIONS GO HERE");         // condition-display
+  createElement("appContainer", "div", ["row", "d-sm-flex"], "other-info-label-row", "Other Information");
+  createElement("appContainer", "div", ["row", "d-sm-flex"], "other-info-display-row");
   createElement("other-info-display-row", "img", [], "weather-img");                                      // weather-img
   createElement("main", "footer", [], "footer-info");
   createElement("footer-info", "h6", [], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
+
+  // createElement("appContainer", "row", ["d-sm-flex"], "city-label-row", "City");
+  // createElement("appContainer", "row", ["d-sm-flex"], "city-display", "CITY GOES HERE");                  // city-display
+  // createElement("appContainer", "row", ["d-sm-flex"], "zip-code-display", "ZIP CODE GOES HERE");          // zip-code-display
+  // createElement("appContainer", "row", ["d-sm-flex"], "temperature-label-row", "Temperature");
+  // createElement("appContainer", "row", ["d-sm-flex"], "temperature-display");
+  // createElement("temperature-display", "col", ["d-sm-flex"], "temp-Kelvin", "KELVIN GOES HERE");          // temp-Kelvin
+  // createElement("temperature-display", "col", ["d-sm-flex"], "temp-Fahrenheit", "FAHRENHEIT GOES HERE");  // temp-Fahrenheit
+  // createElement("temperature-display", "col", ["d-sm-flex"], "temp-Celsius", "CELSIUS GOES HERE");        // temp-Celsius
+  // createElement("appContainer", "row", ["d-sm-flex"], "condition-label-row", "Conditions");
+  // createElement("appContainer", "row", ["d-sm-flex"], "condition-display", "CONDITIONS GO HERE");         // condition-display
+  // createElement("appContainer", "row", ["d-sm-flex"], "other-info-label-row", "Other Information");
+  // createElement("appContainer", "row", ["d-sm-flex"], "other-info-display-row");
+  // createElement("other-info-display-row", "img", [], "weather-img");                                      // weather-img
+  // createElement("main", "footer", [], "footer-info");
+  // createElement("footer-info", "h6", [], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
+
+
 }
 
 async function callAPI(zipIn) {
