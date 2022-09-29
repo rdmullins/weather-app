@@ -171,7 +171,7 @@ To complete the assignment, you must complete the following:
 - Allow user to select 'favorite' temp
     - It would be awesome if this would slide
 - Wind speed and direction
-- Add current time under zip code
+X Add current time under zip code
 - Add five-day?
 - Store favorite locations?
 - Modal about

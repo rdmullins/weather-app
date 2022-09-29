@@ -6,7 +6,6 @@
 let stateObj = {
   city : "",
   zipCode: "",
-  currentTime: "",
   tempK: 0,
   tempF: 0,
   tempC: 0,
@@ -81,7 +80,8 @@ function buildUI() {
   createElement("zip-code-label-box", "div", ["input-group", "zip-input"], "input-div");
   createInputSection();
   
-  // Everything below this row is targeted by the updateDisplay() function for dynamic populating
+  // Returned Data Section
+  // Some elements below this row are targeted by the updateDisplay() function for dynamic populating
   // Note IDs in side comments -> correspond to stateObj fields
   createElement("appContainer", "div", ["container", "text-center"], "returned-data-section");
   createElement("returned-data-section", "div", ["row", "bg-warning", "align-items-center"], "city-label-row");
@@ -107,11 +107,13 @@ function buildUI() {
   createElement("appContainer", "div", ["row"], "other-info-label-row");
   createElement("other-info-label-row", "div", ["col", "display-5"], "other-info-label");
   createElement("appContainer", "div", ["row"], "weather-img-row");
-  //createElement("other-info-display-row", "div", ["row"], "weather-img-row");
   createElement("weather-img-row", "div", ["col", "text-center", "bg-info"], "weather-img-col");
   createElement("weather-img-col", "img", [], "weather-img");                                                               // weather-img
+
+  // Footer (Attribution of FavIcon and API)
   createElement("main", "footer", [], "footer-info");
   createElement("footer-info", "h6", ["text-center"], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
+  createElement("footer-info", "h6", ["text-center"], "API-attribution", "Data from www.openweathermap.org");
 };
 
 function getTime() {
@@ -140,8 +142,6 @@ function getTime() {
   let dateBox = document.getElementById("showDate");
   timeBox.innerText = time;
   dateBox.innerText = date;
-
-  //return (date + " | " + time);
 }
 
 async function callAPI(zipIn) {
@@ -159,7 +159,6 @@ async function callAPI(zipIn) {
   // Update stateObj with returned data
   stateObj.city = dataBack.data.name;
   stateObj.zipCode = zipIn;
-  //stateObj.currentTime = setInterval(getTime, 1000);
   stateObj.tempK = (dataBack.data.main.temp+"K"); 
   stateObj.tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32)+"°F");   // 1.8*(K-273) + 32 
   stateObj.tempC = (Math.floor((dataBack.data.main.temp - 273.15))+"°C");         // Kelvin – 273.15
