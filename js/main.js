@@ -64,7 +64,22 @@ function buildUI() {
     // zipButton = document.getElementById("zipButton");
     // zipButton.addEventListener("click", getZip);
 
-  }
+  };
+
+  function addModalTrigger(elementID, destination) {
+    let e = document.getElementById(elementID);
+    e.classList.add("btn");
+    //e.classList.add("btn-primary");
+    e.setAttribute("data-bs-toggle", "modal");
+    e.setAttribute("data-bs-target", ("#"+destination));
+  };
+
+  function addModalCloseButton(divIn) {
+    let e = document.getElementById(divIn);
+    e.setAttribute("type", "button");
+    e.setAttribute("data-bs-dismiss", "modal");
+    e.setAttribute("aria-label", "Close");
+  };
 
   // Main Application Container
   createElement("main", "div", ["container"], "appContainer");
@@ -78,9 +93,17 @@ function buildUI() {
   createElement("nav-bar-container", "div", ["collapse", "navbar-collapse"], "nav-menu");
   createElement("nav-menu", "ul", ["navbar-nav", "ms-auto"], "nav-list");
   createElement("nav-list", "li", ["nav-item"], "nav-list-item-1");
-  createElement("nav-list-item-1", "a", [], "about-link", "About");
+  createElement("nav-list-item-1", "button", ["btn", "btn-outline-dark"], "about-link", "About");
+  addModalTrigger("about-link", "aboutModal");
   createElement("nav-list", "li", ["nav-item"], "nav-list-item-2");
-  createElement("nav-list-item-2", "a", [], "contact-link", "Contact");
+  createElement("nav-list-item-2", "button", ["btn", "btn-outline-dark"], "contact-link", "Contact");
+  addModalTrigger("contact-link", "contactModal");
+//btn btn-outline-dark"
+
+    // <!-- Button trigger modal -->
+  // <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  //   Launch demo modal
+  // </button>
 
   // Zip Code Input Section
   createElement("appContainer", "div", ["container"], "zip-code-container");
@@ -123,6 +146,59 @@ function buildUI() {
   createElement("main", "footer", [], "footer-info");
   createElement("footer-info", "h6", ["text-center"], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
   createElement("footer-info", "h6", ["text-center"], "API-attribution", "Data from www.openweathermap.org");
+
+  // About Modal
+  createElement("appContainer", "div", ["modal", "fade"], "aboutModal");
+  createElement("aboutModal", "div", ["modal-dialog"], "aboutDialog");
+  createElement("aboutDialog", "div", ["modal-content"], "aboutContent");
+  createElement("aboutContent", "div", ["modal-header"], "aboutHeader");
+  createElement("aboutHeader", "h5", ["modal-title"], "aboutTitle", "About Roger's Weather App");
+  createElement("aboutHeader", "button", ["btn-close"], "aboutHeaderBtn");
+  addModalCloseButton("aboutHeaderBtn");
+  createElement("aboutContent", "div", ["modal-body"], "aboutBody", "Roger's Weather App\nAwesome Inc. Web Developer Bootcamp\nFall 2022\nMIT License");
+  createElement("aboutContent", "div", ["modal-footer"], "aboutFooter");
+  createElement("aboutFooter", "button", ["btn", "btn-secondary"], "aboutFooterCloseButton", "Dismiss");
+  addModalCloseButton("aboutFooterCloseButton");
+
+  // Contact Modal
+  createElement("appContainer", "div", ["modal", "fade"], "contactModal");
+  createElement("contactModal", "div", ["modal-dialog"], "contactDialog");
+  createElement("contactDialog", "div", ["modal-content"], "contactContent");
+  createElement("contactContent", "div", ["modal-header"], "contactHeader");
+  createElement("contactHeader", "h5", ["modal-title"], "contactTitle", "Contact the Developer");
+  createElement("contactHeader", "button", ["btn-close"], "contactHeaderBtn");
+  addModalCloseButton("contactHeaderBtn");
+  createElement("contactContent", "div", ["modal-body"], "contactBody", "Roger Mullins\nrogermullins.mba@gmail.com");
+  createElement("contactContent", "div", ["modal-footer"], "contactFooter");
+  createElement("contactFooter", "button", ["btn", "btn-secondary"], "contactFooterCloseButton", "Dismiss");
+  addModalCloseButton("contactFooterCloseButton");
+  
+
+
+  // <!-- Button trigger modal -->
+  // <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  //   Launch demo modal
+  // </button>
+  
+  // <!-- Modal -->
+  // <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  //   <div class="modal-dialog">
+  //     <div class="modal-content">
+  //       <div class="modal-header">
+  //         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+  //         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  //       </div>
+  //       <div class="modal-body">
+  //         ...
+  //       </div>
+  //       <div class="modal-footer">
+  //         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  //         <button type="button" class="btn btn-primary">Save changes</button>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div>
+
 };
 
 function getZip() {
