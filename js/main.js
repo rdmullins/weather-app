@@ -15,7 +15,8 @@ let stateObj = {
 
 // Global Variable
 
-let zipIn = "";
+let zipIn = "";   // Used to validate ZIP
+let tempF = 0;    // Used to update temperature background color
 
 function buildUI() {
   // Creates HTML elements
@@ -132,6 +133,9 @@ function getZip() {
   } else {
     alert("Invalid ZIP code.");
   }
+
+  // Reset Input Box
+  zipIn.value = "";
 }
 
 function getTime() {
@@ -162,12 +166,27 @@ function getTime() {
   dateBox.innerText = date;
 }
 
+function capitalizeConditions(stringIn) {
+  // Takes string of current conditions returned by API (all lower case)
+  // Returns same string with first letter capitalized
+  const firstLetter = stringIn.charAt(0);
+  const capitalized = firstLetter.toUpperCase();
+  const restOfString = stringIn.slice(1);
+  const stringOut = capitalized + restOfString;
+  return stringOut;
+}
+
 async function callAPI(zipIn) {
   // Builds API call string and gets data from API
   const apiKey = "a6063ef55e23ba5afdf671e31f5cdf4b";
   const apiCall = ("https://api.openweathermap.org/data/2.5/weather?zip=" + zipIn + ",us&appid=" + apiKey);
-  const dataBack = await axios.get(apiCall);
-  console.log(dataBack);
+  
+  try {
+    const dataBack = await axios.get(apiCall);
+
+    console.log(dataBack);
+
+
   // if (dataBack.request.statusText == "Not Found") {
   //   console.log("Invalid ZIP code - city not found.");
   // }
@@ -180,9 +199,15 @@ async function callAPI(zipIn) {
   stateObj.tempK = (dataBack.data.main.temp+"K"); 
   stateObj.tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32)+"°F");   // 1.8*(K-273) + 32 
   stateObj.tempC = (Math.floor((dataBack.data.main.temp - 273.15))+"°C");         // Kelvin – 273.15
-  stateObj.condition = (dataBack.data.weather[0].main, " with ", dataBack.data.weather[0].description);
-  stateObj.imageURL = ("http://openweathermap.org/img/wn/"+dataBack.data.weather[0].icon+".png");
+  stateObj.condition = capitalizeConditions((dataBack.data.weather[0].main, " with ", dataBack.data.weather[0].description));
+  stateObj.imageURL = ("http://openweathermap.org/img/wn/"+dataBack.data.weather[0].icon+"@2x.png");
+  tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32));
   updateDisplay();
+
+
+} catch (err) {
+    alert("Invalid zip code. Please try again.");
+}
 };
 
 function updateDisplay() {
@@ -196,6 +221,22 @@ function updateDisplay() {
     };
   };
 
+  function temperatureColor(tempIn) {
+    let e = document.getElementById("temp-Fahrenheit");
+    console.log(tempIn);
+
+    if (tempIn <= 32) {
+      e.classList.add("bg-primary")
+    } else if ((tempIn >32) && (tempIn <= 60)) {
+      e.classList.add("bg-info")
+    } else if ((tempIn > 60) && (tempIn < 90)) {
+      e.classList.add("bg-success")
+    } else {
+      e.classList.add("bg-danger")
+    };
+  };
+  
+
   updateElement("city-display", stateObj.city);
   updateElement("zip-code-display", stateObj.zipCode);
   updateElement("temp-Kelvin", stateObj.tempK);
@@ -203,6 +244,8 @@ function updateDisplay() {
   updateElement("temp-Celsius", stateObj.tempC);
   updateElement("condition-display", stateObj.condition);
   updateElement("weather-img", stateObj.imageURL);
+
+  temperatureColor(tempF);
 
 };
 
@@ -230,11 +273,19 @@ function zipValidates(zipToCheck) {
   return (returnValueLength && returnValueDigits);
 };
 
+// This prompt only runs on page load
+// The page doesn't render initially until the first zip code test passes
+// After that, the page dynamically changes with each new zip until a page reload
+zipIn = prompt("ZIP Code:");
+
+if (zipValidates(zipIn)) {
+  callAPI(zipIn);
+} else {
+  alert("Invalid ZIP code.");
+};
+
+// Builds UI and gets time and date information for display if initial zip code validates
+
 buildUI();
 setInterval(getTime, 1000);
-//zipIn = prompt("ZIP Code:");
 
-
-
-// validateZip(zipIn);
-//callAPI("41572");

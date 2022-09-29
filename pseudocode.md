@@ -157,16 +157,16 @@ To complete the assignment, you must complete the following:
 
 ## To Do
 - [x] Fix width issue with ZIP code input box
-- Wire up 'Submit' button
-- Once that's working turn off prompt()
-- When ZIP code box is active, render navbar and input sections on page load
-- Figure out error handling from API
-- Fix capitalization issue with 'conditions'
+- [x] Wire up 'Submit' button
+- [x] Once that's working turn off prompt()
+- [x] When ZIP code box is active, render navbar and input sections on page load
+- [x] Figure out error handling from API
+- [x] Fix capitalization issue with 'conditions'
     - Capitalize first letter of all words
 - Write readme
 
 ## Stretch Goals to Add
-- Change background colors depending on temp
+- [x] Change background colors depending on temp
 - Change app colors night/day
 - Allow user to select 'favorite' temp
     - It would be awesome if this would slide
