@@ -1,7 +1,7 @@
 // Weather App
 // by Roger Mullins
 
-// Object Definition
+// Object Definitions
 
 let stateObj = {
   city : "",
@@ -12,6 +12,16 @@ let stateObj = {
   condition: "",
   imageURL: ""
 };
+
+let lookupHistoryObj = {
+  city: "",
+  zipCode: ""
+};
+
+let localStorageObj = {
+  city: "",
+  zipCode: ""
+}
 
 // Global Variable
 
@@ -133,6 +143,13 @@ function buildUI() {
   createElement("weather-img-row", "div", ["col", "text-center", "bg-info"], "weather-img-col");
   createElement("weather-img-col", "img", [], "weather-img");                                                               // weather-img
 
+  // localStorage Section
+  // Holds last three lookups
+  createElement("main", "div", ["row"], "history-row");
+  createElement("history-row", "div", ["col-4", "text-center", "bg-primary"], "history-1");
+  createElement("history-row", "div", ["col-4", "text-center", "bg-primary"], "history-2");
+  createElement("history-row", "div", ["col-4", "text-center", "bg-primary"], "history-3");
+
   // Footer (Attribution of FavIcon and API)
   createElement("main", "footer", [], "footer-info");
   createElement("footer-info", "h6", ["text-center"], "favicon-attribution", "FavIcon provided by https://www.flaticon.com/free-icons/weather");
@@ -233,8 +250,12 @@ async function callAPI(zipIn) {
   stateObj.condition = capitalizeConditions((dataBack.data.weather[0].main, " with ", dataBack.data.weather[0].description));
   stateObj.imageURL = ("http://openweathermap.org/img/wn/"+dataBack.data.weather[0].icon+"@2x.png");
   tempF = (Math.floor((1.8*((dataBack.data.main.temp)-273))+32)); // Used to change the temperature color background
-  updateDisplay();
 
+  // Update lookupHistoryObj
+  lookupHistoryObj.zipCode = zipIn;
+  lookupHistoryObj.city = dataBack.data.name;
+
+  updateDisplay();
 
 } catch (err) {
     alert("Invalid zip code. Please try again.");
@@ -266,7 +287,44 @@ function updateDisplay() {
       e.classList.add("bg-danger")
     };
   };
-  
+
+  function updateHistory() {
+    // Checks localStorage items for duplicates
+    // If current zip/city is listed -> does not insert
+    // If current zip/city not found -> adds current to localStorage
+    console.log("Inside updateHistory() function.");
+    console.log("lookupHistoryObj = ", lookupHistoryObj);
+
+    if (localStorage.getItem(lookupHistoryObj.zipCode) == null) {  // Need to add to local history
+      localStorage.setItem(lookupHistoryObj.zipCode, lookupHistoryObj.city);
+      console.log("Item added to localStorage: ", localStorage);
+    }
+
+    let localStorageIndex = localStorage.length;
+
+    if (localStorageIndex <= 3) {
+      console.log("Fewer than 3 items found in local storage.")
+      for (let i=0; i<=localStorageIndex; i++) {
+        localStorageObj.zipCode = (localStorage.key(i));
+        localStorageObj.city = (localStorage.getItem(localStorage.key(i)));
+        console.log("History Item Retrieved: ", localStorageObj);
+        console.log("If updateElement() were to run:");
+        console.log("DIV id: ", ("history-"+(i+1)));
+        console.log("Inner Text: ", (localStorageObj.city)+" ("+localStorageObj.zipCode+")");
+        updateElement((("history-")+(i+1)), ((localStorageObj.city)+" ("+localStorageObj.zipCode+")"));
+      }
+    } else {
+      console.log("More than 3 items found in local storage.")
+      for (let i=(localStorage.length-3); i<=localStorage.length; i++) {
+        localStorageObj.zipCode = (localStorage.key(i));
+        localStorageObj.city = (localStorage.getItem(localStorage.key(i)));
+        console.log("History Item Retrieved: ", localStorageObj);
+        console.log("If updateElement() were to run:");
+        console.log("DIV id: ", ("history-"+(i+1)));
+        console.log("Inner Text: ", (localStorageObj.city)+" ("+localStorageObj.zipCode+")");
+        };
+      };
+    };
 
   updateElement("city-display", stateObj.city);
   updateElement("zip-code-display", stateObj.zipCode);
@@ -277,6 +335,8 @@ function updateDisplay() {
   updateElement("weather-img", stateObj.imageURL);
 
   temperatureColor(tempF);
+
+  updateHistory();
 
 };
 
