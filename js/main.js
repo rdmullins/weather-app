@@ -113,10 +113,25 @@ function buildUI() {
   createElement("zip-code-label-box", "div", ["input-group", "zip-input"], "input-div");
   createInputSection();
   
+  // Returned Data Section DESKTOP VIEW
+  // Should display on medium and up
+  createElement("appContainer", "div", ["container", "text-center"], "returned-data-section-desktop");
+  createElement("returned-data-section-desktop", "div", ["row", "d-none", "d-md-block"], "main-desktop-display-row");
+  createElement("main-desktop-display-row", "div", ["col-6", "d-none", "d-md-block"], "desktop-left-side");
+  createElement("main-desktop-display-row", "div", ["col-6", "d-none", "d-md-block"], "desktop-right-side");
+  createElement("desktop-left-side", "div", ["row", "bg-warning", "text-center", "d-none", "d-md-block"], "desktop-city-label-display");
+  createElement("desktop-city-label-display", "div", ["col-3", "align-items-center", "display-5", "d-none", "d-md-block"], "desktop-city-label", "City");
+  createElement("desktop-left-side", "div", ["row", "text-center", "d-none", "d-md-block"], "desktop-city-display-row");
+  createElement("desktop-city-display-row", "div", ["col-3", "align-items-center", "display-3", "d-none", "d-md-block"], "city-display", "CITY GOES HERE");
+  createElement("desktop-left-side", "div", ["row", "text-center", "d-none", "d-md-block"], "desktop-zip-display-row");
+  createElement("desktop-zip-display-row", "div", ["col-3", "align-items-center", "display-5", "d-none", "d-md-block"], "zip-code-display");
+
+
+
   // Returned Data Section
   // Some elements below this row are targeted by the updateDisplay() function for dynamic populating
   // Note IDs in side comments -> correspond to stateObj fields
-  createElement("appContainer", "div", ["container", "text-center"], "returned-data-section");
+  createElement("appContainer", "div", ["container", "text-center", "d-block", "d-md-none"], "returned-data-section");
   createElement("returned-data-section", "div", ["row", "bg-warning", "align-items-center"], "city-label-row");
   createElement("city-label-row", "div", ["col", "display-5"], "city-label-display", "City");
   createElement("returned-data-section", "div", ["row", "align-items-center"], "city-display-row");
@@ -127,28 +142,28 @@ function buildUI() {
   createElement("time-and-date-row", "div", ["col-6", "display-5"], "showDate");
   createElement("time-and-date-row", "div", ["col-6", "display-5"], "showTime");
   createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "temperature-label-row");
-  createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "temperature-display-label-row");
-  createElement("temperature-display-label-row", "div", ["col", "display-5"], "temperature-display-label", "Temperature");
-  createElement("appContainer", "div", ["row"], "temperature-display-row");
-  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-6"], "temp-Kelvin");                    // temp-Kelvin
-  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-3", "bg-info"], "temp-Fahrenheit");     // temp-Fahrenheit
-  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-6"], "temp-Celsius");                   // temp-Celsius
-  createElement("appContainer", "div", ["row", "text-center", "bg-warning"], "condition-label-row");
-  createElement("condition-label-row", "div", ["col", "display-5"], "current-conditions-label", "Current Conditions");
-  createElement("appContainer", "div", ["row"], "condition-display-row");
-  createElement("condition-display-row", "div", ["col", "text-center", "display-5"], "condition-display",);                 // condition-display
-  createElement("appContainer", "div", ["row"], "other-info-label-row");
-  createElement("other-info-label-row", "div", ["col", "display-5"], "other-info-label");
-  createElement("appContainer", "div", ["row"], "weather-img-row");
-  createElement("weather-img-row", "div", ["col", "text-center", "bg-info"], "weather-img-col");
-  createElement("weather-img-col", "img", [], "weather-img");                                                               // weather-img
+  createElement("appContainer", "div", ["row", "text-center", "bg-warning", "d-block", "d-md-none"], "temperature-display-label-row");
+  createElement("temperature-display-label-row", "div", ["col", "display-5", "d-block", "d-md-none"], "temperature-display-label", "Temperature");
+  createElement("appContainer", "div", ["row", "d-flex", "d-md-none"], "temperature-display-row");
+  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-6", "d-inline", "d-md-none"], "temp-Kelvin");                    // temp-Kelvin
+  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-3", "bg-info", "d-inline", "d-md-none"], "temp-Fahrenheit");     // temp-Fahrenheit
+  createElement("temperature-display-row", "div", ["col-4", "text-center", "display-6", "d-inline", "d-md-none"], "temp-Celsius");                   // temp-Celsius
+  createElement("appContainer", "div", ["row", "text-center", "bg-warning", "d-block", "d-md-none"], "condition-label-row");
+  createElement("condition-label-row", "div", ["col", "display-5", "d-block", "d-md-none"], "current-conditions-label", "Current Conditions");
+  createElement("appContainer", "div", ["row", "d-block", "d-md-none"], "condition-display-row");
+  createElement("condition-display-row", "div", ["col", "text-center", "display-5", "d-block", "d-md-none"], "condition-display",);                 // condition-display
+  createElement("appContainer", "div", ["row", "d-block", "d-md-none"], "other-info-label-row");
+  createElement("other-info-label-row", "div", ["col", "display-5", "d-block", "d-md-none"], "other-info-label");
+  createElement("appContainer", "div", ["row", "d-md-none"], "weather-img-row");
+  createElement("weather-img-row", "div", ["col", "text-center", "bg-info", "d-block", "d-md-none"], "weather-img-col");
+  createElement("weather-img-col", "img", ["d-md-none", "text-center"], "weather-img");                                                               // weather-img
 
   // localStorage Section
   // Holds last three lookups
-  createElement("main", "div", ["row"], "history-row");
-  createElement("history-row", "div", ["col-4", "text-center", "bg-primary"], "history-1");
-  createElement("history-row", "div", ["col-4", "text-center", "bg-primary"], "history-2");
-  createElement("history-row", "div", ["col-4", "text-center", "bg-primary"], "history-3");
+  createElement("main", "div", ["row", "d-block", "d-md-none"], "history-row");
+  createElement("history-row", "div", ["col-4", "text-center", "bg-primary", "d-block", "d-md-none"], "history-1");
+  createElement("history-row", "div", ["col-4", "text-center", "bg-primary", "d-block", "d-md-none"], "history-2");
+  createElement("history-row", "div", ["col-4", "text-center", "bg-primary", "d-block", "d-md-none"], "history-3");
 
   // Footer (Attribution of FavIcon and API)
   createElement("main", "footer", [], "footer-info");
